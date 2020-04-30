@@ -39,7 +39,11 @@ jobs:
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
       # run tests! and gen code coverage
-      - command: sudo chmod +x ./gradlew
+      - run:
+          name: Change folder permission
+          commnad: sudo chmod +x ./gradlew
+          when: always
+
       - run: ./gradlew clean test jacocoTestReport
 
       - run:
